@@ -855,12 +855,12 @@ function loadImage(){
         }
         xhrArray[i].onloadend = function (e) {
             totalSize += 1;
-             percent = totalSize/36 *80
+             percent = totalSize/36 *100
                 document.getElementById('text').style.fontSize = "x-large"
                 roundedPercent = Math.round(percent)
-                if(roundedPercent >= 80){
+                if(roundedPercent >= 100){
                     doneLoading = true
-                    roundedPercent = 80
+                    roundedPercent = 100
                     // if(doneLoading){
                         // screen.style.display = "none";
                         // document.getElementById('progress-image').style.visibility = "hidden";
@@ -879,15 +879,7 @@ function loadImage(){
         xhrArray[i].send();
 
     }
-    let timer = setInterval(function() {
-
-                // if(!doneLoading){
-                    roundedPercent += 4
-                    document.getElementById('text').innerHTML = roundedPercent +"%"
-                    document.getElementById("barbar").style.width = roundedPercent +"%" 
-                // }
-         
-                }, 1000)
+    
 }
 function progressBar(){
     screen = document.getElementsByClassName('progress-load')[0];
