@@ -7,8 +7,7 @@ var isPlayed = false;
 var isPlayed2 = false;
 var isPlayed3 = false;  
 var onceOnly = false;
-var beginAudio = document.getElementById("awal");
-beginAudio.volume = 0.2;
+
 
 var pathPlayer = ["../Assets/sprites/1.png"
                     ,"../Assets/sprites/2.png"
@@ -35,6 +34,72 @@ var pathPlayer = ["../Assets/sprites/1.png"
                     ,"../Assets/sprites/6t3.png"
                     ,"../Assets/sprites/6t4.png"]
 
+var imageSrc = [
+    "../Assets/bgParallax.png",
+    "../Assets/bgAssets/jembatanAsset.png",
+    "../Assets/layeredBg/ly5.png",
+    "../Assets/bgAssets/cart1Asset.png",
+    "../Assets/bgAssets/cart2Asset.png",
+    "../Assets/layeredBg/ly2.png",
+    "../Assets/layeredBg/ly1.png",
+    "../Assets/layeredBg/ly4.png",
+    "../Assets/layeredBg/ly3.png",
+    "../Assets/obstacle/coin.png",
+    "../Assets/obstacle/missile.png"
+]
+
+var audioSrc = [
+    "../Assets/sound/charge.wav",
+    "../Assets/sound/duar.wav",
+    "../Assets/sound/fall.wav",
+    "../Assets/sound/coin.mp3",
+    "../Assets/sound/damage.mp3",
+    "../Assets/sound/awalNew.mp3",
+    "../Assets/sound/back1.mp3",
+]
+
+
+var pPlayerObject = []
+var pPlayerDeathObject = []
+var pPlayerMoveToYObject = []
+var imageObject = []
+var audioObject = []
+function init(){
+    for(let i = 0 ; i < imageSrc.length ;i++ ){
+        imageObject[i] = new Image()
+        imageObject[i].src = imageSrc[i]
+    }
+
+    for(let i = 0 ; i < audioSrc.length ; i++ ){
+        audioObject[i] = new Audio()
+        audioObject[i].src = audioSrc[i]
+        audioObject[i].loop = false
+    }
+
+    for(let i = 0 ; i < pathPlayer.length ;i++ ){
+        pPlayerObject[i] = new Image()
+        pPlayerObject[i].src = pathPlayer[i]
+    }
+
+    for(let i = 0 ; i < pathPlayerDeath.length ;i++ ){
+        pPlayerDeathObject[i] = new Image()
+        pPlayerDeathObject[i].src = pathPlayerDeath[i]
+    }
+
+    for(let i = 0 ; i < pathPlayer.length ;i++ ){
+        pPlayerMoveToYObject[i] = new Image()
+        pPlayerMoveToYObject[i].src = pathMoveToY[i]
+    }
+
+}
+
+
+
+
+init()
+var beginAudio = document.getElementById("awal");
+beginAudio.volume = 0.2;
+
 function game(){
 
     
@@ -49,30 +114,6 @@ function game(){
     var ctx3 = canvas.getContext('2d');
 
     var indexImage = 3
-    // var pathPlayer = ["../Assets/sprites/1.png"
-    //                 ,"../Assets/sprites/2.png"
-    //                 ,"../Assets/sprites/3.png"
-    //                 ,"../Assets/walkSprites/walk1.png"
-    //                 ,"../Assets/walkSprites/walk2.png"
-    //                 ,"../Assets/walkSprites/walk3.png"
-    //                 ,"../Assets/walkSprites/walk4.png"
-    //                 ,"../Assets/walkSprites/walk5.png"
-    //                 ,"../Assets/walkSprites/walk6.png"
-    //                 ,"../Assets/walkSprites/walk7.png"
-    //                 ,"../Assets/walkSprites/walk8.png"
-    //                 ,"../Assets/walkSprites/walk9.png"
-    //                 ,"../Assets/sprites/13.png"
-    //                 ,"../Assets/sprites/6.png"]
-
-    // var pathPlayerDeath = ["../Assets/sprites/13t1.png"
-    //                 ,"../Assets/sprites/13t2.png"
-    //                 ,"../Assets/sprites/13t3.png"
-    //                 ,"../Assets/sprites/13t4.png"]
-
-    // var pathMoveToY = ["../Assets/sprites/6t1.png"
-    //                 ,"../Assets/sprites/6t2.png"
-    //                 ,"../Assets/sprites/6t3.png"
-    //                 ,"../Assets/sprites/6t4.png"]
                         
 
     var isPressed = false
@@ -115,8 +156,6 @@ function game(){
 
     var isDead = false
     var gravity = 9
-    var spriteBack = new Image() // background
-    var spriteRoad = new Image()
     var posX = 100 , posY = 520; // posisi player
     var speedY = 0; // speed Y atasbawah
 
@@ -134,13 +173,10 @@ function game(){
     function clear()
     {
 
-        spriteBack.src = '../Assets/bgParallax.png'
-        ctx.drawImage(spriteBack,paralaxX,0,2*canvas.width,canvas.height)
+        ctx.drawImage(imageObject[0],paralaxX,0,2*canvas.width,canvas.height)
         
 
-        var x3 = new Image()
-        x3.src = '../Assets/bgAssets/jembatanAsset.png'
-        ctx.drawImage(x3,paralaxX,0.5*canvas.height,2*canvas.width,0.5*canvas.height)
+        ctx.drawImage(imageObject[1],paralaxX,0.5*canvas.height,2*canvas.width,0.5*canvas.height)
         if(isDead == false)
             paralaxX-=3
         if(isWin == true)
@@ -160,26 +196,23 @@ function game(){
             roadX -= ( 20+ accWin )
         roadX%=canvas.width
 
-        var x3 = new Image()
-        x3.src = '../Assets/layeredBg/ly5.png'
-        ctx.drawImage(x3,roadX,10,2*canvas.width,canvas.height)
+        ctx.drawImage(imageObject[2],roadX,10,2*canvas.width,canvas.height)
 
     }
 
     function cart()
     {
     	cartSpeed += cartAcc
-
-		var x4 = new Image()
+        let cartindex
 		if(cartAcc < 0)
 		{
-			x4.src = '../Assets/bgAssets/cart1Asset.png'
+            cartindex = 3
 		}
-		else
-        	x4.src = '../Assets/bgAssets/cart2Asset.png'
+        else
+            cartindex = 4
 
-        ctx.drawImage(x4,cartSpeed,linearYCart,150,100)
-        ctx.drawImage(x4,cartSpeed+125,linearYCart,150,100)
+        ctx.drawImage(imageObject[cartindex],cartSpeed,linearYCart,150,100)
+        ctx.drawImage(imageObject[cartindex],cartSpeed+125,linearYCart,150,100)
         if(cartSpeed >= canvas.width+350 && cartAcc > 0)
         {
         	cartAcc += 4
@@ -196,23 +229,13 @@ function game(){
     function road2()
     {
         
-        var x1 = new Image()
-        var x2 = new Image()
-        var x4 = new Image()
-        var x5 = new Image()
-        
-        
-        x1.src = '../Assets/layeredBg/ly2.png'
-        ctx.drawImage(x1,roadX,10,2*canvas.width,canvas.height)
+        ctx.drawImage(imageObject[5],roadX,10,2*canvas.width,canvas.height)
 
-        x2.src = '../Assets/layeredBg/ly1.png'
-        ctx.drawImage(x2,roadX,10,2*canvas.width,canvas.height)
+        ctx.drawImage(imageObject[6],roadX,10,2*canvas.width,canvas.height)
 
-        x4.src = '../Assets/layeredBg/ly4.png'
-        ctx.drawImage(x4,roadX,-10,2*canvas.width,canvas.height)
+        ctx.drawImage(imageObject[7],roadX,-10,2*canvas.width,canvas.height)
 
-        x5.src = '../Assets/layeredBg/ly3.png'
-        ctx.drawImage(x5,roadX,10,2*canvas.width,canvas.height)
+        ctx.drawImage(imageObject[8],roadX,10,2*canvas.width,canvas.height)
     }
 
     function imageIndex()
@@ -277,8 +300,6 @@ function game(){
         {
             posY = maxY
         }
-        var sprite = new Image()
-        sprite.src = pathPlayer[indexImage]
 
         if(isHit){
             ctx2.globalAlpha = opacity;
@@ -293,7 +314,7 @@ function game(){
             }
         }
 
-        ctx2.drawImage(sprite,posX,posY,120,120)
+        ctx2.drawImage(pPlayerObject[indexImage],posX,posY,120,120)
 
         ctx2.globalAlpha = 1;
     }
@@ -318,10 +339,7 @@ function game(){
         // print coin
         for(let i = 0 ; i < arrCoin ; i++)
         {
-            var path = new Image()
-
-            path.src = "../Assets/obstacle/coin.png"
-            ctx.drawImage(path,linearXCoin[i],linearYCoin[i],60,60)
+            ctx.drawImage(imageObject[9],linearXCoin[i],linearYCoin[i],60,60)
 
             // collision coin
             if(posY + 110 >= linearYCoin[i] && posY <= linearYCoin[i] + 60 && linearXCoin[i] <= posX  + 95 && linearXCoin[i] + 60 >= posX)
@@ -332,10 +350,7 @@ function game(){
                 arrCoin--
                 totalCoin += 1
                 totalCoinAbs += 1
-                var cn = new Audio();
-                cn.src = "../Assets/sound/coin.mp3";
-                cn.loop = false;
-                cn.play();
+                audioObject[3].play();
             }
             else
             {
@@ -382,10 +397,7 @@ function game(){
 
     function coinCounter()
     {
-        var path = new Image()
-
-        path.src = "../Assets/obstacle/coin.png"
-        ctx.drawImage(path,30,20,60,60)
+        ctx.drawImage(imageObject[9],30,20,60,60)
 
         ctx.font = "2.2vw Lucida Sans Unicode"
         ctx.fillStyle = "lightblue"
@@ -413,10 +425,7 @@ function game(){
 
         for(let i = 0 ; i < totalMissile ; i++)
         {
-            var path = new Image()
-            path.src = "../Assets/obstacle/missile.png"
-
-            ctx.drawImage(path,linearXMissile[i],linearYMissile[i],180,25)
+            ctx.drawImage(imageObject[10],linearXMissile[i],linearYMissile[i],180,25)
             
             if((posY + 110 >= linearYMissile[i] && posY <= linearYMissile[i]+25  && linearXMissile[i]+180 >= posX && linearXMissile[i] <= posX+95) && !isWin && isDead == false)
             {
@@ -543,41 +552,37 @@ function game(){
         if(totalFramesCounter % 2 == 0 && a)
             posX += (accWin)
 
-        var sprite = new Image()
         if(isWin)
         {
-            if(posY + ((0.5*canvas.height) & 1 == 1 ? 81 : 80 ) ==  (canvas.height*0.5))
-                sprite.src = pathPlayer[13]
-            else 
-                sprite.src = pathMoveToY[indexImage]
+            if(posY + ((0.5*canvas.height) & 1 == 1 ? 81 : 80 ) ==  (canvas.height*0.5)){
+                ctx2.drawImage(pPlayerObject[13],posX,posY,120,120)
+            }
+            else {
+                
+                ctx2.drawImage(pPlayerMoveToYObject[indexImage],posX,posY,120,120)
+
+            }
 
         }
         else if(isDead)
         {
-            if(posY + ((0.5*canvas.height) & 1 == 1 ? 81 : 80 ) ==  (canvas.height*0.5))
-                sprite.src = pathPlayer[13]
-            else 
-                sprite.src = pathPlayerDeath[indexImage]
+            if(posY + ((0.5*canvas.height) & 1 == 1 ? 81 : 80 ) ==  (canvas.height*0.5)){
+                
+                ctx2.drawImage(pPlayerObject[13],posX,posY,120,120)
+            }
+            else {
+                ctx2.drawImage(pPlayerDeathObject[indexImage],posX,posY,120,120)
+                
+            }
         }
 
 
         // 0 - 3
 
-        ctx2.drawImage(sprite,posX,posY,120,120)
+        // ctx2.drawImage(sprite,posX,posY,120,120)
 
     }
 
-// var index = 0;
-// interval = window.setInterval(function () {
-
-//     if (index < 100) {
-//         draw();
-//         index += 1;
-//     } else {
-//         window.clearInterval(interval);
-//     }
-
-// }, 25);
 
     function draw()
     {
@@ -628,16 +633,6 @@ function game(){
 
             winSound();
 
-            // setTimeout(() => {
-            //     beginAudio.currentTime = 0;
-            //     beginAudio.play();
-            //     snd.pause();
-            //     canvas.style.display = "none";
-            //     document.getElementsByClassName("outerdiv")[0].style.visibility = "visible";
-            //     document.body.style.backgroundImage = "url('../Assets/images/background/bgAkhirv2.png')";
-            //     details()
-            //     return
-            // }, 6000);  
 
             setWinAndLose(6000);
 
@@ -646,18 +641,6 @@ function game(){
         {
             // menang
             isDead = true
-
-            // loseSound();
-            // setTimeout(() => {
-            //     beginAudio.currentTime = 0;
-            //     beginAudio.play();
-            //     snd.pause();
-            //     canvas.style.display = "none";
-            //     document.getElementsByClassName("outerdiv")[0].style.visibility = "visible";
-            //     document.body.style.backgroundImage = "url('../Assets/images/background/bgAkhirv2.png')";
-            //     details()
-            //     return
-            // }, 3000);  
 
             setWinAndLose(3000);
 
@@ -714,17 +697,11 @@ function game(){
 
     function winSound(){
         if (!isPlayed){
-            var fS = new Audio();
-            fS.src = "../Assets/sound/charge.wav";
-            fS.loop = false;
-            fS.play();
+            audioObject[0].play()
             isPlayed = true;
 
             setTimeout(function(){ 
-                var fD = new Audio();
-                fD.src = "../Assets/sound/duar.wav";
-                fD.loop = false;
-                fD.play();
+                audioObject[1].play()
                 isPlayed = true;
                 
                    
@@ -735,17 +712,11 @@ function game(){
 
     function loseSound(){
         if (!isPlayed){
-            var fS = new Audio();
-            fS.src = "../Assets/sound/charge.wav";
-            fS.loop = false;
-            fS.play();
+            audioObject[0].play()
             isPlayed = true;
 
             setTimeout(function(){ 
-                var fD = new Audio();
-                fD.src = "../Assets/sound/duar.wav";
-                fD.loop = false;
-                fD.play();
+                audioObject[1].play()
                 isPlayed = true;
                 
                    
@@ -756,10 +727,7 @@ function game(){
 
     function dmgSound(){
         if (!isPlayed2){
-            var fS = new Audio();
-            fS.src = "../Assets/sound/damage.mp3";
-            fS.loop = false;
-            fS.play();
+            audioObject[4].play()
             isPlayed2 = true;
         }
         
@@ -767,11 +735,8 @@ function game(){
 
     function fallSound(){
         if (!isPlayed3){
-            var fS = new Audio();
-            fS.src = "../Assets/sound/fall.wav";
-            fS.volume = 1;
-            fS.loop = false;
-            fS.play();
+            audioObject[2].volume = 1
+            audioObject[2].play()
 
             setTimeout(() => {
                  fS.play();
@@ -815,8 +780,8 @@ function loadImage(){
                     ,"../Assets/walkSprites/walk8.png"
                     ,"../Assets/walkSprites/walk9.png"
                     ,"../Assets/sprites/13.png"
-                    ,"../Assets/sprites/6.png",
-                    "../Assets/sprites/13t1.png"
+                    ,"../Assets/sprites/6.png"
+                    ,"../Assets/sprites/13t1.png"
                     ,"../Assets/sprites/13t2.png"
                     ,"../Assets/sprites/13t3.png"
                     ,"../Assets/sprites/13t4.png"
