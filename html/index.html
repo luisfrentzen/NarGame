@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>NAR21-1</title>
+    <link rel="shortcut icon" href="../Assets/images/logo/logo.png" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+    <script src="../jquery/jquery-3.3.1.min.js"></script>
+
+</head>
+<body scroll="no">
+    <audio id="awal" loop autoplay="autoplay" controls="controls" style="display: none">
+      <source src="../Assets/sound/awalNew.mp3">
+        <source src="music.wav" />
+    </audio>
+
+    <audio id="suara" loop>
+      <source src="../Assets/sound/back1.mp3">
+    </audio>
+     <audio id="damage" >
+      <source src="../Assets/sound/damage.mp3">
+    </audio>
+
+    <div class="wrapper-container-logo">
+        <div class="wrapper-alt-img">
+            <a onclick="main()">
+                <div class="wrap">
+                    <img class="img-logo" src="../Assets/images/logo/logo.png" id="bambang" alt="" >
+                </div>
+                <!-- <div style="justify-content: center;display: flex;cursor: pointer;font-size: 1vw;">
+                    <h1 style="--n:1">Click&nbsp;</h1> <h1 style="--n:2">Here&nbsp;</h1>
+                    <h1 style="--n:3">To&nbsp;</h1><h1 style="--n:4">Start!</h1>
+                </div> -->
+            </a>
+        </div>
+    </div>
+     <div id="progress-image">
+        <!-- <img src="../Assets/player.png" alt="" style="width: 90px;position: absolute;left: 0;top: 7vw;" > -->
+    </div>
+    <div class="progress-load" style="display: none;margin-top: -4vw">
+
+        <div style="width: 50vw;margin-left: -15vw" >
+            <p style="text-align : center;color:navy;font-size : 3.5vw;"><b>HOW TO PLAY: </b></p><br>
+            <p style="text-align : center;color:navy;font-size : 1.5vw">Hold W to Fly</p>
+            <p style="text-align : center;color:navy;font-size : 1.5vw">Stay away from crystal shred</p>
+            <p style="text-align : center;color:navy;font-size : 1.5vw">Hitting a crystal will reduce your coin</p>
+            <p style="text-align : center;color:navy;font-size : 1.5vw">Claim 20 coins to win the game!</p>
+            <p style="text-align : center;color:navy;font-size : 1.5vw">Die when coins equals 0</p>
+
+            <br>
+            <br>
+        </div>
+
+
+        <div class="progress-text">
+            <p class="a" id="text" > A </p>
+        </div>
+        <br>
+        <div class="progress-bar">
+            <div class="bar" id="barbar">
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <canvas class="surface" id="surface" style="width: 100vw;height: 100%;" ></canvas>
+
+    <img src="../Assets/images/background/bgAkhirv2.png" style="width: 100vw;height: 100%;position: absolute;display: none;left: -100vw" id="overlayImage">
+    <div class="outerdiv">
+        <img src="../Assets/images/background/endscrrr.png" class="border" alt="">
+        <div class="innerdiv">
+            <!-- <div class="title"> -->
+                <div class="contentBox">
+                    <ul>
+                        <li>
+                            <div class="titleCell" id = "benefit">
+                                <strong >BENEFITS</strong>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="titleCell" id = "req">
+                                <strong  >REQ.</strong>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="titleCell" id = "test">
+                                <strong >TEST</strong>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="titleCell" id = "reg">
+                                <strong >REG.</strong>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="titleCell" id = "contact">
+                                <strong >CONTACT</strong>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            <div id="benefitDetail">
+                <p class="hardSkill" style="font-family: 'Chelsea Market', cursive; color: #00cfe6">Hard Skills</p>
+                <div class="row">
+                    <div class="column">
+                        <img src="../Assets/react.png" style="width:6.8vw"alt="">
+                        <div class="cpp-overlay">
+                            <div class="overlay-text" style="font-family: 'Chelsea Market', cursive;">React</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <img src="../Assets/java.png" alt="">
+                        <div class="java-overlay">
+                            <div class="overlay-text" style="font-family: 'Chelsea Market', cursive;">Java</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <img src="../Assets/js.png" alt="">
+                        <div class="js-overlay">
+                            <div class="overlay-text" style="font-family: 'Chelsea Market', cursive;">Java<br>Script</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <img src="../Assets/python.png" alt="">
+                        <div class="phyton-overlay">
+                            <div class="overlay-text" style="font-family: 'Chelsea Market', cursive;">Python</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <img src="../Assets/android.png" alt="">
+                        <div class="android-overlay">
+                            <div class="overlay-text"style="font-family: 'Chelsea Market', cursive;">Android</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 100%; display: block;"><p class="softSkill" style="font-family: 'Chelsea Market', cursive; color: #00cfe6">Soft Skills</p></div>
+                <div class="skImages">
+                    <div class="columnSS">
+                        <img src="../Assets/publicspeaking.png" alt="">
+                        <div class="publicSpeaking-overlay">
+                            <div class="overlay-text" style="font-family: 'Chelsea Market', cursive;">Public<br>Speaking</div>
+                        </div>
+                    </div>
+                    <div class="columnSS">
+                        <img src="../Assets/social.png" alt="">
+                        <div class="social-overlay">
+                            <div class="overlay-text" style="font-family: 'Chelsea Market', cursive;">Social<br>Networking</div>
+                        </div>
+                    </div>
+                    <div class="columnSS">
+                        <img src="../Assets/teamwork.png" alt="">
+                        <div class="teamwork-overlay">
+                            <div class="overlay-text" style="font-family: 'Chelsea Market', cursive;">Teamwork</div>
+                        </div>
+                    </div>
+                    <div class="columnSS">
+                        <img src="../Assets/timemgmt.png" alt="">
+                        <div class="timemgmt-overlay">
+                            <div class="overlay-text" style="font-family: 'Chelsea Market', cursive;margin-left: 0.12vw; ">Time<br>Management</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="jobXp" style="font-family: 'Chelsea Market', cursive;color : #00cfe6">Job Experiences</p>
+            </div>
+            <div id="reqDetail" >
+                <table>
+                    <tr class="rowGua">
+                        <td class="columnGua">
+                            <img src="../Assets/binusan.png" style="float:left; margin: 0; height: 8.7vw; width: 8.7vw" alt="">
+                            <p style="text-align: left; font-size: 1vw">Must be a Binusian</p>
+                        </td>
+
+                        <td class="columnGua">
+                            <img src="../Assets/contract.png" style="float:left margin: 0; height: 8.7vw; width: 8.7vw" alt="">
+                            <p style="text-align: left; font-size: 1vw">Willing to sign a 2 years contract</p>
+                        </td>
+                    </tr>
+                    <tr style="height: 10vw" class="rowGua">
+                        <td class="columnGua">
+                            <img src="../Assets/grade.png"  style="float:left;margin: 0; height: 8.7vw; width: 8.7vw"alt="">
+                            <p style="text-align: left;font-size: 1vw">Min B in Algorithm and Programming or Intro to Programming (Except for first semester)</p>
+
+                        </td>
+                        <td class="columnGua">
+                            <img src="../Assets/programming.png" style="float:left;margin: 0; height: 8.7vw; width: 8.7vw" alt="">
+                            <p style="text-align: left;font-size: 1vw">Binusian of the following program or faculty Socs, SIS, FoE, DP, MTP</p>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div id="testDetail">
+                <div class="date">
+                    <span>Sunday,</span>
+                    <span class="dateMonth" style="color: #00cfe6"><b>11 October</b></span>
+                    <span>2020</span>
+                </div>
+                <p class="time">08:00 - 13:00</p>
+                <div class="outfit" style="margin-top: 2vw">
+                    <div class="dress">Dress Politely and Bring Binusian Card</div>
+                    <div class="bring"></div>
+                    <div class="binusianCard"></div>
+                    <div class="initialTest">The initial test consist of :</div>
+                    <div class="aptitude">
+                        <ul>
+                            <li>
+                                <span class="apt" style="color: #00cfe6"><b>Aptitude</b></span>
+                                <span>Test</span>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="programming">
+                        <ul>
+                            <li>
+                                <span class="pro" style="color: #00cfe6"><b>Programming</b></span>
+                                <span> Test ( using</span>
+                                <span class="pro" style="color: #00cfe6"><b>C/C++/Java </b></span>
+                                <span>)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="regDetail">
+                <p class="openRegis">Open Registration</p>
+                <div class="regisDate">
+                    <span>Monday,</span>
+                    <span class="month" style="color: #00cfe6">31 August</span>
+                    <span>2020</span>
+               </div>
+                <p>until</p>
+                <div class="regisDate">
+                    <span>Thursday,</span>
+                    <span class="month" style="color: #00cfe6">8 October</span>
+                    <span>2020</span>
+                    <p>at</p>
+
+                    <a href="http://bluejack.binus.ac.id/nar/" target="_blank">
+                        <img style="height: 3vw; margin-left: -1vw; margin-top: 2vh;" src="../Assets/button2.png" class="babebo" id="registerButton">
+                    </a>
+                    <!-- <a href="bluejack.binus.ac.id/lab/" target="_blank">bluejack.binus.ac.id/lab/</a> -->
+                </div>
+            </div>
+            <div id="contactDetail">
+                <div style="display: none;" id="contactDetail1">
+                    <p class="nfi" style="color: #00cfe6">FOR MORE <br>&nbsp&nbsp&nbsp INFORMATION</p>
+                    <p class="cu" style="color: #ffffff">&nbsp&nbsp&nbspCONTACT US on</p>
+                    <p class="kmg" style="color: #ffffff">&nbsp&nbsp&nbsp- Kemanggisan -</p>
+                    <p class="recsel" style="color: #ffffff">&nbsp&nbsp&nbspChristina / Hanni / Natasia</p>
+                    <p class="phone" style="color: #ffffff">&nbsp&nbsp&nbsp021-5345830 ext 1762 - Room 724</p>
+                </div>
+                <div style="display: inline-block;margin-top: 2vw">
+                    <div style="float: left;margin-left: -2vw">
+                        <img  src="../Assets/sosmed/youtube.png" style="width: 2.5vw;float: left"><p style="font-size: 0.6vw;float: left;margin-top: 0.8vw">&nbspSoftware Lab Center&nbsp</p>
+                    </div>
+                    <div style="float: left">
+                        <img  src="../Assets/sosmed/facebook.png" style="width: 2.5vw;float: left"><p style="font-size: 0.6vw;float: left;margin-top: 0.8vw">SoftwareLabCenter&nbsp&nbsp</p>
+                    </div>
+                    <div style="float: left">
+                         <img   src="../Assets/sosmed/instagram.png" style="width: 1.7vw;float: left;margin-top: 0.5vw"><p style="font-size: 0.6vw;float: left;margin-top: 0.8vw">&nbspslcbinusuniv&nbsp</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+    </div>
+</div>
+
+<br>
+</body>
+<script>
+
+
+    var viewportmeta = document.querySelector('meta[name="viewport"]');
+    viewportmeta.content = 'user-scalable=NO, width=device-width, initial-scale=1.0'
+
+
+
+
+</script>
+<script src="../jquery/jquery.js"></script>
+<script src="../js/backend.js"></script>
+<!-- <script>game()</script> -->
+</html>
