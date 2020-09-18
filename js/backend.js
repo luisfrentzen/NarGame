@@ -833,6 +833,11 @@ function loadImage(){
                     ,"../Assets/layeredBg/ly3.png"
                     ,"../Assets/layeredBg/ly4.png"
                     ,"../Assets/bgAssets/jembatanAsset.png"
+                    ,"../Assets/bgAssets/cart1Asset.png"
+                    ,"../Assets/bgAssets/cart2Asset.png"
+                    ,"../Assets/endsScreen4.png"
+                    ,"../Assets/obstacle/missile.png"
+                    ,"../Assets/images/background/bgAkhirv2.png"
                     ]
 
     var xhrArray =  new Array();
@@ -850,7 +855,7 @@ function loadImage(){
         }
         xhrArray[i].onloadend = function (e) {
             totalSize += 1;
-             percent = totalSize/31 *100
+             percent = totalSize/36 *100
                 document.getElementById('text').style.fontSize = "x-large"
                 roundedPercent = Math.round(percent)
                 if(roundedPercent >= 100){
