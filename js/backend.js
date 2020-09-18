@@ -866,6 +866,12 @@ function loadImage(){
                         // document.getElementById('progress-image').style.visibility = "hidden";
                         // beginAudio.pause();
                         // game()
+
+                    setTimeout(function(){ 
+                            document.getElementById("start-button").style.display = "block"
+                            document.getElementById("start-button").style.visibility = "visible"
+                            
+                    }, 5000);
                 }
                 document.getElementById('text').innerHTML = roundedPercent +"%"
                 document.getElementById("barbar").style.width = percent +"%"  
@@ -903,11 +909,8 @@ function main() {
     }
     progressBar();
     loadImage();
-    setTimeout(function(){ 
-            document.getElementById("start-button").style.display = "block"
-            document.getElementById("start-button").style.visibility = "visible"
-            
-    }, 5000);
+
+    
 
     // 8200
 }
