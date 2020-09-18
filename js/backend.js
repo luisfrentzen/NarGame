@@ -894,21 +894,24 @@ function main() {
     document.getElementById('progress-image').style.left = "24vw"
     document.getElementById('progress-image').style.visibility = "visible"
     removeLogo();
-
+    document.getElementById("start-button").onclick = function(){
+            screen.style.display = "none";
+            document.getElementById('progress-image').style.visibility = "hidden";
+            document.getElementById("start-button").style.visibility = "hidden"
+            beginAudio.pause();
+            game()  
+    }
     progressBar();
     loadImage();
     setTimeout(function(){ 
-    
-        screen.style.display = "none";
-                document.getElementById('progress-image').style.visibility = "hidden";
-                beginAudio.pause();
-                game()
-        
-           
+            document.getElementById("start-button").style.display = "block"
+            document.getElementById("start-button").style.visibility = "visible"
+            
     }, 5000);
 
     // 8200
 }
+
 
 function details()
 {
@@ -1031,38 +1034,38 @@ for(let i=0;i<14;i++){
 
 
 
-document.onkeydown = function(e) {
-    if(e.keyCode == 123) {
-    return false;
-    }
-    if(e.ctrlKey && e.keyCode == 'E'.charCodeAt(0)){
-    return false;
-    }
-    if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
-    return false;
-    }
-    if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
-    return false;
-    }
-    if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)){
-    return false;
-    }
-    if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
-    return false;
-    }
-    if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)){
-    return false;
-    }
-    if(e.ctrlKey && e.keyCode == 'H'.charCodeAt(0)){
-    return false;
-    }
-    if(e.ctrlKey && e.keyCode == 'A'.charCodeAt(0)){
-    return false;
-    }
-    if(e.ctrlKey && e.keyCode == 'F'.charCodeAt(0)){
-    return false;
-    }
-    if(e.ctrlKey && e.keyCode == 'E'.charCodeAt(0)){
-    return false;
-    }
-}
+// document.onkeydown = function(e) {
+//     if(e.keyCode == 123) {
+//     return false;
+//     }
+//     if(e.ctrlKey && e.keyCode == 'E'.charCodeAt(0)){
+//     return false;
+//     }
+//     if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
+//     return false;
+//     }
+//     if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
+//     return false;
+//     }
+//     if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)){
+//     return false;
+//     }
+//     if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
+//     return false;
+//     }
+//     if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)){
+//     return false;
+//     }
+//     if(e.ctrlKey && e.keyCode == 'H'.charCodeAt(0)){
+//     return false;
+//     }
+//     if(e.ctrlKey && e.keyCode == 'A'.charCodeAt(0)){
+//     return false;
+//     }
+//     if(e.ctrlKey && e.keyCode == 'F'.charCodeAt(0)){
+//     return false;
+//     }
+//     if(e.ctrlKey && e.keyCode == 'E'.charCodeAt(0)){
+//     return false;
+//     }
+// }

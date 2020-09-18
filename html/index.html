@@ -11,6 +11,7 @@
 
 </head>
 <body scroll="no">
+
     <audio id="awal" loop autoplay="autoplay" controls="controls" style="display: none">
       <source src="../Assets/sound/awalNew.mp3">
         <source src="music.wav" />
@@ -22,12 +23,14 @@
      <audio id="damage" >
       <source src="../Assets/sound/damage.mp3">
     </audio>
-
+    <img src="../Assets/images/logo/logo.png" id="start-button" style="position: absolute;width: 500px;height: 100px;top : 600px;visibility: hidden">
     <div class="wrapper-container-logo">
         <div class="wrapper-alt-img">
+
             <a onclick="main()">
                 <div class="wrap">
                     <img class="img-logo" src="../Assets/images/logo/logo.png" id="bambang" alt="" >
+
                 </div>
                 <!-- <div style="justify-content: center;display: flex;cursor: pointer;font-size: 1vw;">
                     <h1 style="--n:1">Click&nbsp;</h1> <h1 style="--n:2">Here&nbsp;</h1>
@@ -66,6 +69,8 @@
 
 
     </div>
+
+
 
     <canvas class="surface" id="surface" style="width: 100vw;height: 100%;" ></canvas>
 
