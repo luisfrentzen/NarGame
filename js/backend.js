@@ -855,12 +855,12 @@ function loadImage(){
         }
         xhrArray[i].onloadend = function (e) {
             totalSize += 1;
-             percent = totalSize/36 *100
+             percent = totalSize/36 *80
                 document.getElementById('text').style.fontSize = "x-large"
                 roundedPercent = Math.round(percent)
-                if(roundedPercent >= 100){
+                if(roundedPercent >= 80){
                     doneLoading = true
-                    roundedPercent = 100
+                    roundedPercent = 80
                     // if(doneLoading){
                         // screen.style.display = "none";
                         // document.getElementById('progress-image').style.visibility = "hidden";
@@ -879,6 +879,15 @@ function loadImage(){
         xhrArray[i].send();
 
     }
+    let timer = setInterval(function() {
+
+                // if(!doneLoading){
+                    roundedPercent += 4
+                    document.getElementById('text').innerHTML = roundedPercent +"%"
+                    document.getElementById("barbar").style.width = roundedPercent +"%" 
+                // }
+         
+                }, 1000)
 }
 function progressBar(){
     screen = document.getElementsByClassName('progress-load')[0];
@@ -904,7 +913,7 @@ function main() {
                 game()
         
            
-    }, 1000);
+    }, 5000);
 
     // 8200
 }
