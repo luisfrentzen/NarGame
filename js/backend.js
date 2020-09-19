@@ -86,7 +86,7 @@ function init(){
         pPlayerDeathObject[i].src = pathPlayerDeath[i]
     }
 
-    for(let i = 0 ; i < pathPlayer.length ;i++ ){
+    for(let i = 0 ; i < pathMoveToY.length ;i++ ){
         pPlayerMoveToYObject[i] = new Image()
         pPlayerMoveToYObject[i].src = pathMoveToY[i]
     }
@@ -276,6 +276,8 @@ function game(){
                 if(indexImage != 3)indexImage++
 
                 indexImage %= 4
+            }else{
+                indexImage%=4
             }
         }
     }
