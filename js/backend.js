@@ -350,6 +350,7 @@ function game(){
                 arrCoin--
                 totalCoin += 1
                 totalCoinAbs += 1
+                audioObject[3].currentTime = 0
                 audioObject[3].play();
             }
             else
@@ -727,6 +728,7 @@ function game(){
 
     function dmgSound(){
         if (!isPlayed2){
+            audioObject[4].currentTime = 0
             audioObject[4].play()
             isPlayed2 = true;
         }
