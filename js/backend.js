@@ -835,7 +835,7 @@ function loadImage(){
                         // game()
 
                     setTimeout(function(){
-                            document.getElementById("start-button").style.display = "block"
+                            document.getElementById("start-button").style.display = "flex"
                             document.getElementById("start-button").style.visibility = "visible"
 
                     }, 5000);
