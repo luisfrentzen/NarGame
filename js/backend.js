@@ -123,7 +123,7 @@ function game(){
     var totalCoin = 5
     var arrCoin = 0
     var maxY = 80
-    var minY = 470
+    var minY = canvas.height - 260;
     var linearXCoin = []
     var linearYCoin = []
     var totalCoinAbs = 5
