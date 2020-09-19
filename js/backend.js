@@ -565,17 +565,17 @@ function game(){
             }
 
         }
-        else if(isDead)
-        {
-            if(posY + ((0.5*canvas.height) & 1 == 1 ? 81 : 80 ) ==  (canvas.height*0.5)){
-
-                ctx2.drawImage(pPlayerObject[13],posX,posY,120,120)
-            }
-            else {
-                ctx2.drawImage(pPlayerDeathObject[indexImage],posX,posY,120,120)
-
-            }
-        }
+        // else if(isDead)
+        // {
+        //     if(posY + ((0.5*canvas.height) & 1 == 1 ? 81 : 80 ) ==  (canvas.height*0.5)){
+        //
+        //         ctx2.drawImage(pPlayerObject[13],posX,posY,120,120)
+        //     }
+        //     else {
+        //         ctx2.drawImage(pPlayerDeathObject[indexImage],posX,posY,120,120)
+        //
+        //     }
+        // }
 
 
         // 0 - 3
