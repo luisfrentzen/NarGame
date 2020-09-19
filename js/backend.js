@@ -835,7 +835,7 @@ function loadImage(){
                         // game()
 
                     setTimeout(function(){
-                            document.getElementById("start-button").style.display = "flex"
+                            document.getElementById("start-button").style.display = "block"
                             document.getElementById("start-button").style.visibility = "visible"
 
                     }, 5000);
@@ -869,9 +869,9 @@ function main() {
     removeLogo();
     document.getElementById("start-button").onclick = function(){
             screen.style.display = "none";
-            document.getElementById('progress-image').style.visibility = "none";
+            document.getElementById('progress-image').style.visibility = "hiddden";
             document.getElementById("start-button").style.display = "none"
-            document.getElementById("start-button").style.visibility = "none"
+            document.getElementById("start-button").style.visibility = "hidden"
             beginAudio.pause();
             game()
     }
