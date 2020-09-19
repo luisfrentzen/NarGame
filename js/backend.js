@@ -1,11 +1,11 @@
 ﻿
 
-//memanggil canvas di tag HTML    
+//memanggil canvas di tag HTML
     // var canvas = document.getElementById("surface");
 var snd = document.getElementById("suara");
 var isPlayed = false;
 var isPlayed2 = false;
-var isPlayed3 = false;  
+var isPlayed3 = false;
 var onceOnly = false;
 
 
@@ -102,7 +102,7 @@ beginAudio.volume = 0.2;
 
 function game(){
 
-    
+
     snd.volume = 0.2;
     snd.play();
 
@@ -114,7 +114,7 @@ function game(){
     var ctx3 = canvas.getContext('2d');
 
     var indexImage = 3
-                        
+
 
     var isPressed = false
 
@@ -161,7 +161,7 @@ function game(){
 
     var paralaxX = 0 // untuk background
     var roadX = 0 // untuk efek road
-    
+
     var isWin = false
     var isBounce = false
     var isHit = false;
@@ -174,7 +174,7 @@ function game(){
     {
 
         ctx.drawImage(imageObject[0],paralaxX,0,2*canvas.width,canvas.height)
-        
+
 
         ctx.drawImage(imageObject[1],paralaxX,0.5*canvas.height,2*canvas.width,0.5*canvas.height)
         if(isDead == false)
@@ -187,7 +187,7 @@ function game(){
         // paralaxX-=5
         paralaxX%=canvas.width
     }
-    
+
     function road()
     {
         if(isDead == false && isWin == false)
@@ -217,7 +217,7 @@ function game(){
         {
         	cartAcc += 4
             cartAcc *= -1
-        }    
+        }
         else if(cartSpeed < -350 && cartAcc < 0)
         {
             cartAcc *= -1
@@ -228,7 +228,7 @@ function game(){
 
     function road2()
     {
-        
+
         ctx.drawImage(imageObject[5],roadX,10,2*canvas.width,canvas.height)
 
         ctx.drawImage(imageObject[6],roadX,10,2*canvas.width,canvas.height)
@@ -258,7 +258,7 @@ function game(){
                     indexImage %= 12
                     if(indexImage < 3) indexImage = 3
                 }
-                
+
                 // sprite jalan 3 - 11
             }
             else
@@ -272,7 +272,7 @@ function game(){
             if(totalFramesCounter % 10 == 0)
             {
                 if(indexImage > 3) indexImage = 0
-                
+
                 if(indexImage != 3)indexImage++
 
                 indexImage %= 4
@@ -284,8 +284,8 @@ function game(){
     {
         posY+=speedY // naik turun
         posY+=gravity // gravitasi
-        
-        
+
+
         if(posY>=minY)
         {
             posY=minY
@@ -306,7 +306,7 @@ function game(){
 
             setTimeout(() => {
                 opacity += 0.1
-            }, 10);  
+            }, 10);
 
             if(opacity >= 1){
                 isHit = false
@@ -335,7 +335,7 @@ function game(){
                 coinCollision.push(canvas.width + i*60)
             }
         }
-        
+
         // print coin
         for(let i = 0 ; i < arrCoin ; i++)
         {
@@ -369,16 +369,16 @@ function game(){
                 }
             }
         }
-    }            
-    
+    }
+
 
     function missileHit()
     {
-        
+
 
         if(isHit && !isDead && !isWin)
         {
-            
+
             ctx.save();
             var dx = Math.random()*10 ;
             var dy = Math.random()*10 ;
@@ -389,7 +389,7 @@ function game(){
 
             if(Math.random() * 10 < 5)dy*=-1
 
-            ctx.translate(dx, dy);  
+            ctx.translate(dx, dy);
 
             isPlayed2 = false;
         }
@@ -411,9 +411,9 @@ function game(){
         if(framesMissile >= 30 - ((acc)+2) && isWin == false)
         {
             framesMissile = 0
-            
+
             linearXMissile[totalMissile] = canvas.width
-            
+
             linearYMissile[totalMissile] = posY
             totalMissile++
             if(Math.floor(Math.random() * 10) < 8)
@@ -427,14 +427,14 @@ function game(){
         for(let i = 0 ; i < totalMissile ; i++)
         {
             ctx.drawImage(imageObject[10],linearXMissile[i],linearYMissile[i],180,25)
-            
+
             if((posY + 110 >= linearYMissile[i] && posY <= linearYMissile[i]+25  && linearXMissile[i]+180 >= posX && linearXMissile[i] <= posX+95) && !isWin && isDead == false)
             {
                 linearXMissile.splice(i,1)
                 linearYMissile.splice(i,1)
                 i--
                 totalMissile--
-                isHit = true        
+                isHit = true
                 opacity = 0.1
                 totalCoin -= 1
                 dmgSound();
@@ -485,7 +485,7 @@ function game(){
             if(isBounce){
                 posX += 4;
 
-                
+
             }
 
         }
@@ -497,7 +497,7 @@ function game(){
         else if (posY < minY - 40 && isBounce && !reallyDie)
         {
             reallyDie = true
-        } 
+        }
         else if (posY >= minY && !isBounce){
             isBounce = true
         }
@@ -509,8 +509,8 @@ function game(){
         }
         else if (reallyDie){
             gravity = 3
-        }       
-        else 
+        }
+        else
         {
             gravity = 10
         }
@@ -529,22 +529,22 @@ function game(){
             else if(posY >= ((canvas.height * 0.5) - ((0.5*canvas.height) %2 == 1 ? 81 : 80)  + 1))
             {
                  // a = true
-                 
+
             }
             else
             {
                 posY += 2
- 
+
             }
 
-            
+
             if(posY +1 > ((canvas.height * 0.5) - ((0.5*canvas.height) %2 == 1 ? 81 : 80)  + 1) && posY -1 < ((canvas.height * 0.5) - ((0.5*canvas.height) %2 == 1 ? 81 : 80)  + 1) && posX >= canvas.width*0.01)
             {
 
                 setTimeout(() => {
                  a = true
                 }, 2000);
-               
+
             }
             else{
                 posX += 4
@@ -559,7 +559,7 @@ function game(){
                 ctx2.drawImage(pPlayerObject[13],posX,posY,120,120)
             }
             else {
-                
+
                 ctx2.drawImage(pPlayerMoveToYObject[indexImage],posX,posY,120,120)
 
             }
@@ -568,12 +568,12 @@ function game(){
         else if(isDead)
         {
             if(posY + ((0.5*canvas.height) & 1 == 1 ? 81 : 80 ) ==  (canvas.height*0.5)){
-                
+
                 ctx2.drawImage(pPlayerObject[13],posX,posY,120,120)
             }
             else {
                 ctx2.drawImage(pPlayerDeathObject[indexImage],posX,posY,120,120)
-                
+
             }
         }
 
@@ -613,10 +613,10 @@ function game(){
 
 
 
-        coin() // random coin            
-        
+        coin() // random coin
+
         missile()
-        
+
 
 
         totalFramesCounter++
@@ -625,7 +625,7 @@ function game(){
             acc += 0.01
             if(acc>=50)acc = 50
         }
-        
+
         if(totalCoin >= 20)
         {
             // kalah
@@ -659,14 +659,14 @@ function game(){
                 document.body.style.backgroundImage = "url('../Assets/images/background/bgAkhirv2.png')";
                 details()
                 return
-            }, t);  
+            }, t);
     }
 
     function overlay()
     {
         $('#overlayImage').animate({left: '0px'},2500).animate({opacity: '1.0'});
     }
-    
+
     function onlyOnce(){
         if (!onceOnly){
             beginAudio.currentTime = 0;
@@ -683,7 +683,7 @@ function game(){
             speedY=0
             isPressed = false
         }
-        
+
     }
     function ControlDown(event)
     {
@@ -693,7 +693,7 @@ function game(){
             speedY=-23
             isPressed = true
         }
-        
+
     }
 
     function winSound(){
@@ -701,14 +701,14 @@ function game(){
             audioObject[0].play()
             isPlayed = true;
 
-            setTimeout(function(){ 
+            setTimeout(function(){
                 audioObject[1].play()
                 isPlayed = true;
-                
-                   
+
+
             }, 3500);
         }
-        
+
     }
 
     function loseSound(){
@@ -716,14 +716,14 @@ function game(){
             audioObject[0].play()
             isPlayed = true;
 
-            setTimeout(function(){ 
+            setTimeout(function(){
                 audioObject[1].play()
                 isPlayed = true;
-                
-                   
+
+
             }, 3500);
         }
-        
+
     }
 
     function dmgSound(){
@@ -732,7 +732,7 @@ function game(){
             audioObject[4].play()
             isPlayed2 = true;
         }
-        
+
     }
 
     function fallSound(){
@@ -747,17 +747,17 @@ function game(){
 
 
         }
-        
+
     }
 
 
     draw();
     function animateTitle(){
         var title=document.title;
-        document.title=title.substr(1,title.length)+title.substr(0,1);                
+        document.title=title.substr(1,title.length)+title.substr(0,1);
     }
     setInterval(animateTitle,100);
-} 
+}
 
 // mulai dari sini buat progress bar
 
@@ -834,32 +834,32 @@ function loadImage(){
                         // beginAudio.pause();
                         // game()
 
-                    setTimeout(function(){ 
-                            document.getElementById("start-button").style.display = "block"
+                    setTimeout(function(){
+                            document.getElementById("start-button").style.display = "flex"
                             document.getElementById("start-button").style.visibility = "visible"
-                            
+
                     }, 5000);
                 }
                 document.getElementById('text').innerHTML = roundedPercent +"%"
-                document.getElementById("barbar").style.width = percent +"%"  
+                document.getElementById("barbar").style.width = percent +"%"
 
                 // roundedPercent /= 2
                 // var leftValue = document.getElementById('progress-image').style.leftValue
                 // leftValue = roundedPercent
                 // document.getElementById('progress-image').style.left = leftValue + "vw"
         }
-        
+
         xhrArray[i].send();
 
     }
-    
+
 }
 function progressBar(){
     screen = document.getElementsByClassName('progress-load')[0];
     screen.style.display = "block";
 
     var bar = document.getElementById("barbar");
-    
+
 }
 
 
@@ -869,15 +869,16 @@ function main() {
     removeLogo();
     document.getElementById("start-button").onclick = function(){
             screen.style.display = "none";
-            document.getElementById('progress-image').style.visibility = "hidden";
-            document.getElementById("start-button").style.visibility = "hidden"
+            document.getElementById('progress-image').style.visibility = "none";
+            document.getElementById("start-button").style.display = "none"
+            document.getElementById("start-button").style.visibility = "none"
             beginAudio.pause();
-            game()  
+            game()
     }
     progressBar();
     loadImage();
 
-    
+
 
     // 8200
 }
@@ -896,7 +897,7 @@ function details()
     document.getElementById("testDetail").style.position = "absolute";
     document.getElementById("regDetail").style.position = "absolute";
     document.getElementById("contactDetail").style.position = "absolute";
-    
+
     document.getElementById("benefitDetail").style.top = "5vw";
     document.getElementById("reqDetail").style.top = "5vw";
     document.getElementById("testDetail").style.top = "5vw";
@@ -910,7 +911,7 @@ function details()
     document.getElementById("contactDetail").style.left = "1vw";
 
     //document.getElementById("benefitDetail").style.display = "block";
-    
+
 
     benefit.onclick = function(){
         document.getElementById("benefitDetail").style.visibility = "visible";
@@ -954,7 +955,7 @@ function details()
     }
 
 }
-    
+
 
 
 

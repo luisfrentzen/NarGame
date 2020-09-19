@@ -282,6 +282,24 @@ body{
     box-sizing: border-box;
 }
 
+#start-button {
+  background-color: rgb(0, 208, 255);
+  border: 0.6vw rgb(0, 17, 114) solid;
+  width: 11vw;
+  height: 3.5vw;
+  border-radius: 2vw;
+  position: absolute;
+  top: 36vw;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 2vw;
+}
+
+#start-button .focus {
+  background-color: rgb(13, 182, 221);
+}
+
 .innerdiv p{
     font-weight: bold;
     font-stretch: expanded;
