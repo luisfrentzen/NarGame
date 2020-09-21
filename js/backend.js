@@ -170,6 +170,22 @@ function game(){
 
     var accWin = 0
 
+
+
+    var fpsInterval, startTime, now, then, elapsed;
+    
+    
+    // initialize the timer variables and start the animation
+    
+    function startAnimating(fps) {
+        fpsInterval = 1000 / fps;
+        then = Date.now();
+        startTime = then;
+        draw();
+    }
+
+    startAnimating(500)
+
     function clear()
     {
 
@@ -590,65 +606,84 @@ function game(){
     function draw()
     {
 
-        clear() // background paralax
-        missileHit() // efek getar
-        imageIndex()
-
-        road2() // untuk atas bawah
-
-        cart()
-
-        if(isDead || isWin)
-        {
-            dead()
-        }
-        else
-            movement() // playe☺r
-
-        road() // untuk atas bawah
-        ctx.restore()
-
-        //point() // point kanan atas
-
-
-        coinCounter() // coin counter kiri atas
-
-
-
-        coin() // random coin
-
-        missile()
-
-
-
-        totalFramesCounter++
-        if(totalFramesCounter%4 == 0 && isDead == false)
-        {
-            acc += 0.01
-            if(acc>=50)acc = 50
-        }
-
-        if(totalCoin >= 20)
-        {
-            // kalah
-            // isDead = true
-            isWin = true
-
-            winSound();
-
-
-            setWinAndLose(6000);
-
-        }
-        else if(totalCoin < 1)
-        {
-            // menang
-            isDead = true
-
-            setWinAndLose(3000);
-
-        }
         requestAnimationFrame(draw)
+        
+    now = Date.now();
+    elapsed = now - then;
+
+    // if enough time has elapsed, draw the next frame
+
+        if (elapsed > fpsInterval) {
+
+            // Get ready for next frame by setting then=now, but also adjust for your
+            // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
+            then = now - (elapsed % fpsInterval);
+
+            // Put your drawing code here
+
+
+
+
+            clear() // background paralax
+            missileHit() // efek getar
+            imageIndex()
+    
+            road2() // untuk atas bawah
+    
+            cart()
+    
+            if(isDead || isWin)
+            {
+                dead()
+            }
+            else
+                movement() // playe☺r
+    
+            road() // untuk atas bawah
+            ctx.restore()
+    
+            //point() // point kanan atas
+    
+    
+            coinCounter() // coin counter kiri atas
+    
+    
+    
+            coin() // random coin
+    
+            missile()
+    
+    
+    
+            totalFramesCounter++
+            if(totalFramesCounter%4 == 0 && isDead == false)
+            {
+                acc += 0.01
+                if(acc>=50)acc = 50
+            }
+    
+            if(totalCoin >= 20)
+            {
+                // kalah
+                // isDead = true
+                isWin = true
+    
+                winSound();
+    
+    
+                setWinAndLose(6000);
+    
+            }
+            else if(totalCoin < 1)
+            {
+                // menang
+                isDead = true
+    
+                setWinAndLose(3000);
+    
+            }
+
+        }
     }
 
     function setWinAndLose(t){
@@ -1007,38 +1042,38 @@ for(let i=0;i<14;i++){
 
 
 
-// document.onkeydown = function(e) {
-//     if(e.keyCode == 123) {
-//     return false;
-//     }
-//     if(e.ctrlKey && e.keyCode == 'E'.charCodeAt(0)){
-//     return false;
-//     }
-//     if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
-//     return false;
-//     }
-//     if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
-//     return false;
-//     }
-//     if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)){
-//     return false;
-//     }
-//     if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
-//     return false;
-//     }
-//     if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)){
-//     return false;
-//     }
-//     if(e.ctrlKey && e.keyCode == 'H'.charCodeAt(0)){
-//     return false;
-//     }
-//     if(e.ctrlKey && e.keyCode == 'A'.charCodeAt(0)){
-//     return false;
-//     }
-//     if(e.ctrlKey && e.keyCode == 'F'.charCodeAt(0)){
-//     return false;
-//     }
-//     if(e.ctrlKey && e.keyCode == 'E'.charCodeAt(0)){
-//     return false;
-//     }
-// }
+document.onkeydown = function(e) {
+    if(e.keyCode == 123) {
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'E'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'H'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'A'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'F'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'E'.charCodeAt(0)){
+    return false;
+    }
+}

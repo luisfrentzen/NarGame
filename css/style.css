@@ -296,6 +296,10 @@ body{
   font-size: 2vw;
 }
 
+#start-button:hover{
+    background-color: #008CBA;
+}
+
 #start-button .focus {
   background-color: rgb(13, 182, 221);
 }
