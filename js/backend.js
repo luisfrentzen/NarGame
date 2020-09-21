@@ -171,20 +171,10 @@ function game(){
     var accWin = 0
 
 
-
-    var fpsInterval, startTime, now, then, elapsed;
-    
-    
-    // initialize the timer variables and start the animation
-    
-    function startAnimating(fps) {
-        fpsInterval = 1000 / fps;
-        then = Date.now();
-        startTime = then;
-        draw();
-    }
-
-    startAnimating(60)
+    const FRAMES_PER_SECOND = 60;  // Valid values are 60,30,20,15,10...
+    // set the mim time to render the next frame
+    const FRAME_MIN_TIME = (1000/60) * (60 / FRAMES_PER_SECOND) - (1000/60) * 0.5;
+    var lastFrameTime = 0;  // the last frame time
 
     function clear()
     {
@@ -605,24 +595,13 @@ function game(){
 
     function draw()
     {
-
-        requestAnimationFrame(draw)
-        
-    now = Date.now();
-    elapsed = now - then;
-
-    // if enough time has elapsed, draw the next frame
-
-        if (elapsed > fpsInterval) {
-
-            // Get ready for next frame by setting then=now, but also adjust for your
-            // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
-            then = now - (elapsed % fpsInterval);
-
-            // Put your drawing code here
-
-
-
+        time = Date.now()
+        if(time-lastFrameTime < FRAME_MIN_TIME){ //skip the frame if the call is too early
+            requestAnimationFrame(draw);
+            return; // return as there is nothing to do
+        }
+        lastFrameTime = time; // remember the time of the rendered frame
+        // render the frame
 
             clear() // background paralax
             missileHit() // efek getar
@@ -683,8 +662,12 @@ function game(){
     
             }
 
-        }
+            requestAnimationFrame(draw)
     }
+
+
+
+
 
     function setWinAndLose(t){
         setTimeout(() => {
