@@ -171,10 +171,15 @@ function game(){
     var accWin = 0
 
 
-    const FRAMES_PER_SECOND = 60;  // Valid values are 60,30,20,15,10...
+    const FRAMES_PER_SECOND = 120;  // Valid values are 60,30,20,15,10...
     // set the mim time to render the next frame
-    const FRAME_MIN_TIME = (1000/60) * (60 / FRAMES_PER_SECOND) - (1000/60) * 0.5;
+    const FRAME_MIN_TIME = (1000/120) * (120 / FRAMES_PER_SECOND) - (1000/120) * 0.5;
     var lastFrameTime = 0;  // the last frame time
+
+    // const FRAMES_PER_SECOND = 60;  // Valid values are 60,30,20,15,10...
+    // // set the mim time to render the next frame
+    // const FRAME_MIN_TIME = (1000/60) * (60 / FRAMES_PER_SECOND) - (1000/60) * 0.5;
+    // var lastFrameTime = 0;  // the last frame time
 
     function clear()
     {
