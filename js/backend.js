@@ -184,7 +184,7 @@ function game(){
         draw();
     }
 
-    startAnimating(500)
+    startAnimating(60)
 
     function clear()
     {
